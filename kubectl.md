@@ -1,4 +1,4 @@
-<sub><sup>:house: > <a href="kubernetes.md">Kubernetes</a> > kubectl</sup></sub>
+<sub><sup>:house: > <a href="kubernetes.html">Kubernetes</a> > kubectl</sup></sub>
 
 # kubectl
 
