@@ -1,4 +1,4 @@
-<sub><sup><a href="index.html">Repouso</a> > <a href="kubernetes.html">Kubernetes</a></sup></sub>
+<sub><sup><a href="index.html">Repouso</a> > Kubernetes</sup></sub>
 
 # Kubernetes
 
