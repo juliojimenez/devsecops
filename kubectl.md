@@ -6,6 +6,7 @@
 - [create deployment](#create-deployment)
 - [get deployments](#get-deployments)
 - [get nodes](#get-nodes)
+- [Get Pod Name](#get-pod-name)
 - [Host-Cluster Proxy](#host-cluster-proxy)
 - [version](#version)
 - [version With curl](#version-with-curl)
@@ -41,6 +42,14 @@ kubernetes-bootcamp   1/1     1            1           94s
 $ kubectl get nodes
 NAME       STATUS   ROLES    AGE     VERSION
 minikube   Ready    master   3m55s   v1.17.3
+```
+
+## Get Pod Name
+
+```shell
+$ export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+$ echo Name of the Pod: $POD_NAME
+Name of the Pod: kubernetes-bootcamp-69fbc6f4cf-t98v9
 ```
 
 ## Host-Cluster Proxy
