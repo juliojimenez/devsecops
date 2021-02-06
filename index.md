@@ -1,5 +1,3 @@
-# DevSecOps
-
-## Table of Contents
+# Table of Contents
 
 - [Kubernetes](kubernetes.md)
