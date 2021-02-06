@@ -1,3 +1,5 @@
+<sub><sup><a href="index.html">дом</a> > <a href="kubernetes.html">Kubernetes</a> > minikube</sup></sub>
+
 # minikube
 
 - [start](#start)
