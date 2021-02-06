@@ -1,5 +1,7 @@
 # Kubernetes
 
+- [minikube](#minikube)
+
 ## minikube
 
 - [start](#start)
