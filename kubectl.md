@@ -4,10 +4,11 @@
 
 - [cluster-info](#cluster-info)
 - [create deployment](#create-deployment)
-- [get deployments](#get-deployments)
-- [get nodes](#get-nodes)
-- [Get Pod Name](#get-pod-name)
+- [describe](#describe)
+- [exec](#exec)
+- [get](#get)
 - [Host-Cluster Proxy](#host-cluster-proxy)
+- [logs](#logs)
 - [version](#version)
 - [version With curl](#version-with-curl)
 
@@ -28,7 +29,17 @@ $ kubectl create deployment kubernetes-bootcamp --image gcr.io/google-samples/ku
 deployment.apps/kubernetes-bootcamp created
 ```
 
-## get deployments
+## describe
+
+## exec
+
+## get
+
+- [get deployments](#get-deployments)
+- [get nodes](#get-nodes)
+- [Get Pod Name](#get-pod-name)
+
+### get deployments
 
 ```shell
 $ kubectl get deployments
@@ -36,7 +47,7 @@ NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
 kubernetes-bootcamp   1/1     1            1           94s
 ```
 
-## get nodes
+### get nodes
 
 ```shell
 $ kubectl get nodes
@@ -44,7 +55,7 @@ NAME       STATUS   ROLES    AGE     VERSION
 minikube   Ready    master   3m55s   v1.17.3
 ```
 
-## Get Pod Name
+### Get Pod Name
 
 ```shell
 $ export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
@@ -63,6 +74,8 @@ Starting to serve on 127.0.0.1:8001
 echo -e "\n\n\n\e[92mStarting Proxy. After starting it will not output a response. Please click the first Terminal Tab\n"; 
 kubectl proxy
 ```
+
+## logs
 
 ## version
 
