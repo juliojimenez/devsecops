@@ -4,3 +4,4 @@
 
 - [kubectl](kubectl.md)
 - [minikube](minikube.md)
+- [Notes](notes.md)

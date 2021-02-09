@@ -7,8 +7,8 @@
 - [describe](#describe)
 - [exec](#exec)
 - [get](#get)
-- [Host-Cluster Proxy](#host-cluster-proxy)
 - [logs](#logs)
+- [proxy](#proxy)
 - [version](#version)
 - [version With curl](#version-with-curl)
 
@@ -31,13 +31,71 @@ deployment.apps/kubernetes-bootcamp created
 
 ## describe
 
+- [describe pods](#describe-pods)
+
+### describe pods
+
+```shell
+$ kubectl describe pods
+Name:         kubernetes-bootcamp-765bf4c7b4-krkbp
+Namespace:    default
+Priority:     0
+Node:         minikube/172.17.0.21
+Start Time:   Tue, 09 Feb 2021 00:21:14 +0000
+Labels:       pod-template-hash=765bf4c7b4
+              run=kubernetes-bootcamp
+Annotations:  <none>
+Status:       Running
+IP:           172.18.0.5
+IPs:
+  IP:           172.18.0.5
+Controlled By:  ReplicaSet/kubernetes-bootcamp-765bf4c7b4
+Containers:
+  kubernetes-bootcamp:
+    Container ID:   docker://a17c399ba870418509c208cd2ecf87d4b67ddb1611170dfbf8275c2cb7a111ff
+    Image:          gcr.io/google-samples/kubernetes-bootcamp:v1
+    Image ID:       docker-pullable://jocatalin/kubernetes-bootcamp@sha256:0d6b8ee63bb57c5f5b6156f446b3bc3b3c143d233037f3a2f00e279c8fcc64af
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 09 Feb 2021 00:21:17 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-gwdjs (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-gwdjs:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-gwdjs
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type     Reason            Age                    From               Message
+  ----     ------            ----                   ----               -------
+  Warning  FailedScheduling  3m14s (x2 over 3m14s)  default-scheduler  0/1 nodes are available: 1 node(s) had taints that the pod didn't tolerate.
+  Normal   Scheduled         3m6s                   default-scheduler  Successfully assigned default/kubernetes-bootcamp-765bf4c7b4-krkbp to minikube
+  Normal   Pulled            3m3s                   kubelet, minikube  Container image "gcr.io/google-samples/kubernetes-bootcamp:v1" already present on machine
+  Normal   Created           3m3s                   kubelet, minikube  Created container kubernetes-bootcamp
+  Normal   Started           3m3s                   kubelet, minikube  Started container kubernetes-bootcamp
+```
+
 ## exec
 
 ## get
 
 - [get deployments](#get-deployments)
 - [get nodes](#get-nodes)
-- [Get Pod Name](#get-pod-name)
+- [get pods](#get-pods)
 
 ### get deployments
 
@@ -55,27 +113,31 @@ NAME       STATUS   ROLES    AGE     VERSION
 minikube   Ready    master   3m55s   v1.17.3
 ```
 
-### Get Pod Name
+### get pods
 
 ```shell
-$ export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
-$ echo Name of the Pod: $POD_NAME
-Name of the Pod: kubernetes-bootcamp-69fbc6f4cf-t98v9
-```
-
-## Host-Cluster Proxy
-
-```
-$ echo -e "\n\n\n\e[92mStarting Proxy. After starting it will not output a response. Please click the first Terminal Tab\n"; kubectl proxy
-Starting Proxy. After starting it will not output a response. Please click the first Terminal Tab
-
-$ kubectl proxy
-Starting to serve on 127.0.0.1:8001
-echo -e "\n\n\n\e[92mStarting Proxy. After starting it will not output a response. Please click the first Terminal Tab\n"; 
-kubectl proxy
+$ kubectl get pods
+NAME                                   READY   STATUS    RESTARTS   AGE
+kubernetes-bootcamp-765bf4c7b4-krkbp   1/1     Running   0          27s
 ```
 
 ## logs
+
+```shell
+$ kubectl logs $POD_NAME
+Kubernetes Bootcamp App Started At: 2021-02-09T02:35:44.983Z | Running On:  kubernetes-bootcamp-765bf4c7b4-4jlwb 
+
+Running On: kubernetes-bootcamp-765bf4c7b4-4jlwb | Total Requests: 1 | App Uptime: 298.038 seconds | Log Time: 2021-02-09T02:40:43.022Z
+```
+
+[Get Pod Name](notes.html#get-pod-name)
+
+## proxy
+
+```shell
+$ kubectl proxy
+Starting to serve on 127.0.0.1:8001
+```
 
 ## version
 
