@@ -3,4 +3,3 @@
 # Table of Contents
 
 - [Kubernetes](kubernetes.md)
-- [Notes](notes.md)
