@@ -130,7 +130,7 @@ Kubernetes Bootcamp App Started At: 2021-02-09T02:35:44.983Z | Running On:  kube
 Running On: kubernetes-bootcamp-765bf4c7b4-4jlwb | Total Requests: 1 | App Uptime: 298.038 seconds | Log Time: 2021-02-09T02:40:43.022Z
 ```
 
-[Get Pod Name](notes.html#get-pod-name)
+[Get Pod Name](notes.md#get-pod-name)
 
 ## proxy
 
