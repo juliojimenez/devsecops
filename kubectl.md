@@ -91,6 +91,35 @@ Events:
 
 ## exec
 
+- [bash](#bash)
+- [env](#env)
+
+### bash
+
+```shell
+$ kubectl exec -ti $POD_NAME bash
+root@kubernetes-bootcamp-765bf4c7b4-ncrpz:/#
+```
+
+### env
+
+```shell
+$ kubectl exec $POD_NAME env
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOSTNAME=kubernetes-bootcamp-765bf4c7b4-ncrpz
+KUBERNETES_PORT_443_TCP_PORT=443
+KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
+KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_PORT=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+NPM_CONFIG_LOGLEVEL=info
+NODE_VERSION=6.3.1
+HOME=/root
+```
+
 ## get
 
 - [get deployments](#get-deployments)
