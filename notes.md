@@ -2,12 +2,18 @@
 
 # Notes
 
+- [Connecting Applications With Services](#connecting-applications-with-services)
 - [Get Pod Name](#get-pod-name)
 - [Host-Cluster Proxy](#host-cluster-proxy)
 - [Pods](#pods)
 - [Pod API URL](#pod-api-url)
 - [Pod Lifecycle](#pod-lifecycle)
 - [ReplicaSet](#replicaset)
+- [Using Source IP](#using-source-ip)
+
+## Connecting Applications With Services
+
+[Connecting Applications With Services](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service)
 
 ## Get Pod Name
 
@@ -49,3 +55,7 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-765bf4c7b4-4jlwb | 
 ## ReplicaSet
 
 [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
+
+## Using Source IP
+
+[Using Source IP](https://kubernetes.io/docs/tutorials/services/source-ip/)
