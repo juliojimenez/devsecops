@@ -5,6 +5,7 @@
 - [Connecting Applications With Services](#connecting-applications-with-services)
 - [Get Pod Name](#get-pod-name)
 - [Host-Cluster Proxy](#host-cluster-proxy)
+- [Labels And Selectors](#labels-and-selectors)
 - [Pods](#pods)
 - [Pod API URL](#pod-api-url)
 - [Pod Lifecycle](#pod-lifecycle)
@@ -34,6 +35,10 @@ Starting to serve on 127.0.0.1:8001
 echo -e "\n\n\n\e[92mStarting Proxy. After starting it will not output a response. Please click the first Terminal Tab\n"; 
 kubectl proxy
 ```
+
+## Labels And Selectors
+
+[Labels And Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels)
 
 ## Pods
 
