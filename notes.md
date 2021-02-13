@@ -1,10 +1,13 @@
-<sub><sup><a href="index.html">Casa</a> > Notes</sup></sub>
+<sub><sup><a href="index.html">Casa</a> > <a href="kubernetes.html">Kubernetes</a> > Notes</sup></sub>
 
 # Notes
 
 - [Get Pod Name](#get-pod-name)
 - [Host-Cluster Proxy](#host-cluster-proxy)
+- [Pods](#pods)
 - [Pod API URL](#pod-api-url)
+- [Pod Lifecycle](#pod-lifecycle)
+- [ReplicaSet](#replicaset)
 
 ## Get Pod Name
 
@@ -26,6 +29,10 @@ echo -e "\n\n\n\e[92mStarting Proxy. After starting it will not output a respons
 kubectl proxy
 ```
 
+## Pods
+
+[Pods](https://kubernetes.io/docs/concepts/workloads/pods/)
+ 
 ## Pod API URL
 
 ```shell
@@ -34,3 +41,11 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-765bf4c7b4-4jlwb | 
 ```
 
 [Get Pod Name](#get-pod-name), [Host-Cluster Proxy](#host-cluster-proxy)
+
+## Pod Lifecycle
+
+[Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)
+
+## ReplicaSet
+
+[ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
