@@ -3,6 +3,7 @@
 # Notes
 
 - [Connecting Applications With Services](#connecting-applications-with-services)
+- [Get Node Port](#get-node-port)
 - [Get Pod Name](#get-pod-name)
 - [Host-Cluster Proxy](#host-cluster-proxy)
 - [Labels And Selectors](#labels-and-selectors)
@@ -15,6 +16,16 @@
 ## Connecting Applications With Services
 
 [Connecting Applications With Services](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service)
+
+## Get Node Port
+
+```shell
+$ export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')
+$ echo NODE_PORT=$NODE_PORT
+NODE_PORT=31218
+$ curl $(minikube ip):$NODE_PORT
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-765bf4c7b4-48g5h | v=1
+```
 
 ## Get Pod Name
 

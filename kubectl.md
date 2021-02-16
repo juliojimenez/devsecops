@@ -6,6 +6,7 @@
 - [create deployment](#create-deployment)
 - [describe](#describe)
 - [exec](#exec)
+- [expose](#expose)
 - [get](#get)
 - [logs](#logs)
 - [proxy](#proxy)
@@ -32,6 +33,7 @@ deployment.apps/kubernetes-bootcamp created
 ## describe
 
 - [describe pods](#describe-pods)
+- [describe services](#describe-services)
 
 ### describe pods
 
@@ -89,6 +91,26 @@ Events:
   Normal   Started           3m3s                   kubelet, minikube  Started container kubernetes-bootcamp
 ```
 
+### describe services
+
+```shell
+$ kubectl describe services/kubernetes-bootcamp
+Name:                     kubernetes-bootcamp
+Namespace:                default
+Labels:                   run=kubernetes-bootcamp
+Annotations:              <none>
+Selector:                 run=kubernetes-bootcamp
+Type:                     NodePort
+IP:                       10.104.47.177
+Port:                     <unset>  8080/TCP
+TargetPort:               8080/TCP
+NodePort:                 <unset>  31218/TCP
+Endpoints:                172.18.0.6:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+```
+
 ## exec
 
 - [bash](#bash)
@@ -120,11 +142,19 @@ NODE_VERSION=6.3.1
 HOME=/root
 ```
 
+## expose
+
+```shell
+$ kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
+service/kubernetes-bootcamp exposed
+```
+
 ## get
 
 - [get deployments](#get-deployments)
 - [get nodes](#get-nodes)
 - [get pods](#get-pods)
+- [get services](#get-services)
 
 ### get deployments
 
@@ -148,6 +178,14 @@ minikube   Ready    master   3m55s   v1.17.3
 $ kubectl get pods
 NAME                                   READY   STATUS    RESTARTS   AGE
 kubernetes-bootcamp-765bf4c7b4-krkbp   1/1     Running   0          27s
+```
+
+### get services
+
+```shell
+$ kubectl get services
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   44s
 ```
 
 ## logs
