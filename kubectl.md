@@ -4,10 +4,12 @@
 
 - [cluster-info](#cluster-info)
 - [create deployment](#create-deployment)
+- [delete](#delete)
 - [describe](#describe)
 - [exec](#exec)
 - [expose](#expose)
 - [get](#get)
+- [label](#label)
 - [logs](#logs)
 - [proxy](#proxy)
 - [version](#version)
@@ -30,10 +32,55 @@ $ kubectl create deployment kubernetes-bootcamp --image gcr.io/google-samples/ku
 deployment.apps/kubernetes-bootcamp created
 ```
 
+## delete
+
+```shell
+$ kubectl delete service -l run=kubernetes-bootcamp
+service "kubernetes-bootcamp" deleted
+```
+
 ## describe
 
+- [describe deployment](#describe-deployment)
 - [describe pods](#describe-pods)
 - [describe services](#describe-services)
+
+### describe deployment
+
+```shell
+$ kubectl describe deployment
+Name:                   kubernetes-bootcamp
+Namespace:              default
+CreationTimestamp:      Wed, 17 Feb 2021 01:19:47 +0000
+Labels:                 run=kubernetes-bootcamp
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               run=kubernetes-bootcamp
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  run=kubernetes-bootcamp
+  Containers:
+   kubernetes-bootcamp:
+    Image:        gcr.io/google-samples/kubernetes-bootcamp:v1
+    Port:         8080/TCP
+    Host Port:    0/TCP
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   kubernetes-bootcamp-765bf4c7b4 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  31s   deployment-controller  Scaled up replica set kubernetes-bootcamp-765bf4c7b4 to 1
+```
 
 ### describe pods
 
@@ -180,12 +227,35 @@ NAME                                   READY   STATUS    RESTARTS   AGE
 kubernetes-bootcamp-765bf4c7b4-krkbp   1/1     Running   0          27s
 ```
 
+Using labels
+
+```shell
+$ kubectl get pods -l run=kubernetes-bootcamp
+NAME                                   READY   STATUS    RESTARTS   AGE
+kubernetes-bootcamp-765bf4c7b4-mcb7z   1/1     Running   0          5m47s
+```
+
 ### get services
 
 ```shell
 $ kubectl get services
 NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   44s
+```
+
+Using labels
+
+```shell
+$ kubectl get services -l run=kubernetes-bootcamp
+NAME                  TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kubernetes-bootcamp   NodePort   10.100.83.191   <none>        8080:30316/TCP   6m56s
+```
+
+## label
+
+```shell
+$ kubectl label pod $POD_NAME app=v1
+pod/kubernetes-bootcamp-765bf4c7b4-mcb7z labeled
 ```
 
 ## logs
