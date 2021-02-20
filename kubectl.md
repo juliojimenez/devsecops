@@ -12,6 +12,7 @@
 - [label](#label)
 - [logs](#logs)
 - [proxy](#proxy)
+- [scale](#scale)
 - [version](#version)
 - [version With curl](#version-with-curl)
 
@@ -80,6 +81,42 @@ Events:
   Type    Reason             Age   From                   Message
   ----    ------             ----  ----                   -------
   Normal  ScalingReplicaSet  31s   deployment-controller  Scaled up replica set kubernetes-bootcamp-765bf4c7b4 to 1
+```
+
+```shell
+$ kubectl describe deployments/kubernetes-bootcamp
+Name:                   kubernetes-bootcamp
+Namespace:              default
+CreationTimestamp:      Sat, 20 Feb 2021 17:09:04 +0000
+Labels:                 run=kubernetes-bootcamp
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               run=kubernetes-bootcamp
+Replicas:               4 desired | 4 updated | 4 total | 4 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  run=kubernetes-bootcamp
+  Containers:
+   kubernetes-bootcamp:
+    Image:        gcr.io/google-samples/kubernetes-bootcamp:v1
+    Port:         8080/TCP
+    Host Port:    0/TCP
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      True    MinimumReplicasAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   kubernetes-bootcamp-765bf4c7b4 (4/4 replicas created)
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  10m    deployment-controller  Scaled up replica set kubernetes-bootcamp-765bf4c7b4 to 1
+  Normal  ScalingReplicaSet  4m32s  deployment-controller  Scaled up replica set kubernetes-bootcamp-765bf4c7b4 to 4
 ```
 
 ### describe pods
@@ -201,6 +238,7 @@ service/kubernetes-bootcamp exposed
 - [get deployments](#get-deployments)
 - [get nodes](#get-nodes)
 - [get pods](#get-pods)
+- [get rs](#get-rs)
 - [get services](#get-services)
 
 ### get deployments
@@ -210,6 +248,12 @@ $ kubectl get deployments
 NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
 kubernetes-bootcamp   1/1     1            1           94s
 ```
+
+- **NAME** lists the names of the Deployments in the cluster.
+- **READY** shows the ratio of CURRENT/DESIRED replicas
+- **UP-TO-DATE** displays the number of replicas that have been updated to achieve the desired state.
+- **AVAILABLE** displays how many replicas of the application are available to your users.
+- **AGE** displays the amount of time that the application has been running.
 
 ### get nodes
 
@@ -234,6 +278,32 @@ $ kubectl get pods -l run=kubernetes-bootcamp
 NAME                                   READY   STATUS    RESTARTS   AGE
 kubernetes-bootcamp-765bf4c7b4-mcb7z   1/1     Running   0          5m47s
 ```
+
+Wide output
+
+```shell
+$ kubectl get pods -o wide
+NAME                                   READY   STATUS    RESTARTS   AGE     IP           NODE       NOMINATED NODE   READINESS GATES
+kubernetes-bootcamp-765bf4c7b4-2qvcs   1/1     Running   0          2m19s   172.18.0.8   minikube   <none>           <none>
+kubernetes-bootcamp-765bf4c7b4-svkh8   1/1     Running   0          2m19s   172.18.0.7   minikube   <none>           <none>
+kubernetes-bootcamp-765bf4c7b4-v4f5x   1/1     Running   0          8m9s    172.18.0.5   minikube   <none>           <none>
+kubernetes-bootcamp-765bf4c7b4-zl79j   1/1     Running   0          2m19s   172.18.0.9   minikube   <none>           <none>
+```
+
+### get rs
+
+```shell
+$ kubectl get rs
+NAME                             DESIRED   CURRENT   READY   AGE
+kubernetes-bootcamp-765bf4c7b4   1         1         1       3m34s
+```
+
+The name of the ReplicaSet is always formatted as [DEPLOYMENT-NAME]-[RANDOM-STRING]. The random string is randomly generated and uses the pod-template-hash as a seed.
+
+Two important columns of this command are:
+
+- **DESIRED** displays the desired number of replicas of the application, which you define when you create the Deployment. This is the desired state.
+- **CURRENT** displays how many replicas are currently running.
 
 ### get services
 
@@ -274,6 +344,13 @@ Running On: kubernetes-bootcamp-765bf4c7b4-4jlwb | Total Requests: 1 | App Uptim
 ```shell
 $ kubectl proxy
 Starting to serve on 127.0.0.1:8001
+```
+
+## scale
+
+```shell
+$ kubectl scale deployments/kubernetes-bootcamp --replicas=4
+deployment.apps/kubernetes-bootcamp scaled
 ```
 
 ## version
