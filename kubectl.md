@@ -12,7 +12,9 @@
 - [label](#label)
 - [logs](#logs)
 - [proxy](#proxy)
+- [rollout](#rollout)
 - [scale](#scale)
+- [set](#set)
 - [version](#version)
 - [version With curl](#version-with-curl)
 
@@ -346,11 +348,30 @@ $ kubectl proxy
 Starting to serve on 127.0.0.1:8001
 ```
 
+## rollout
+
+```shell
+$ kubectl rollout status deployments/kubernetes-bootcamp
+deployment "kubernetes-bootcamp" successfully rolled out
+```
+
+```shell
+$ kubectl rollout undo deployments/kubernetes-bootcamp
+deployment.apps/kubernetes-bootcamp rolled back
+```
+
 ## scale
 
 ```shell
 $ kubectl scale deployments/kubernetes-bootcamp --replicas=4
 deployment.apps/kubernetes-bootcamp scaled
+```
+
+## set
+
+```shell
+$ kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
+deployment.apps/kubernetes-bootcamp image updated
 ```
 
 ## version
